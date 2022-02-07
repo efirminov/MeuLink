@@ -6,6 +6,7 @@ import Menu from '../../components/menu';
 import LinkItem from '../../components/LinkItem';
 
 import api from '../../services/api';
+import { saveLinks} from '../../services/storeLinks'
 
 export default function Home() {
     const [link, setLink] = useState('');
@@ -19,6 +20,9 @@ export default function Home() {
             })
             setData(response.data);
             setShowModal(true);
+
+            saveLinks('@encurtaLink', response.data);
+
             setLink('');
         } catch (error) {
             alert("Ops parece que algo deu errado!");
